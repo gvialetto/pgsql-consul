@@ -1,0 +1,4 @@
+vendor/
+bin/
+.virtualgo
+pgsql-consul
