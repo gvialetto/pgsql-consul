@@ -105,6 +105,10 @@ func consulRegistrator(
 				return
 			case <-timerRenewal.C:
 				log.Debugf("No status changes. Renewing service")
+				err := doRegister(client, currentState, registrationData)
+				if err != nil {
+					log.Error(err)
+				}
 				timerRenewal.Reset(params.resyncTime)
 			case state := <-params.statusChannel:
 				if state == currentState {
